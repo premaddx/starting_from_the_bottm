@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const databaseConfig = require('./database');
+const config = require('nconf');
 
 async function init(cb) {
   const options = {
@@ -9,11 +10,11 @@ async function init(cb) {
     connectTimeoutMS: 30000,
   };
 
-  const connectionString = databaseConfig.connectionString;
+  const connectionString = databaseConfig().connectionString;
   const db = mongoose.connect(connectionString, options);
 
   mongoose.connection.on('connected', () => {
-    logger.info(`Mongoose default connection open to ${databaseConfig.dbURI} / ${databaseConfig.db}`);
+    logger.info(`Mongoose default connection open to ${databaseConfig().dbURI} / ${databaseConfig().db}`);
     cb();
   });
 
