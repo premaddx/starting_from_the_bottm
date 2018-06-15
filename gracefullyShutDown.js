@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 // Gracefull shutdown, preventing data loss.
 // i.e. wait for existing connections and processes
 module.exports = function (appServer) {
@@ -13,6 +14,9 @@ module.exports = function (appServer) {
       logger.info(`ProcessId: ${timestamp} Received kill signal, shutting down gracefully.`);
     }
 
+    mongoose.connection.close(() => {
+      logger.info('Mongoose default connection disconnected through app termination');
+    });
     // stop reciving connections.
     appServer.close(() => {
       logger.info(`Closed out remaining connections. ProcessId: ${timestamp}`);
