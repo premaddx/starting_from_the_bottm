@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-require('./api/exampleFolder')(router);
+require('./api/authentication')(router);
 /**
  * Mounting respective paths.
  * @param {object} app Express instance
