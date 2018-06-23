@@ -5,6 +5,7 @@ const passport = require('passport');
 const session = require('express-session');
 const RedisStore = require('connect-redis')(session);
 const config = require('nconf');
+const sqlinjection = require('sql-injection');
 
 function basicMiddlewares(app) {
   // throws 400 error to next, if JSON is not valid
@@ -43,6 +44,8 @@ function basicMiddlewares(app) {
   app.use(morgan(':method :status :res[content-length] - :response-time ms', { stream: logger.stream }));
   // CORS enabled
   app.use(cors());
+  // for detecting sql injections
+  app.use(sqlinjection);
 }
 
 module.exports = basicMiddlewares;

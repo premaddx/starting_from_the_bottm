@@ -1,4 +1,5 @@
 const path = require('path');
+const { mongoose } = require('./config');
 /**
  * Bootstrap application file
  *
@@ -14,7 +15,9 @@ require('./globals');
 require('./config/env').init();
 
 const { appServer, init: initServer } = require('./web/server');
-require('./gracefullyShutDown')(appServer);
 
 // if we are going to use redis then add the config for that
-initServer();
+mongoose.init(() => {
+  initServer();
+  require('./gracefullyShutDown')(appServer);
+});
