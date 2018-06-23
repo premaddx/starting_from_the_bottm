@@ -45,7 +45,7 @@ function basicMiddlewares(app) {
   // CORS enabled
   app.use(cors());
   // for detecting sql injections
-  app.use(sqlinjection);
+  // app.use(sqlinjection);
 }
 
 module.exports = basicMiddlewares;

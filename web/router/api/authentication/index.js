@@ -5,8 +5,11 @@ const isLoggedIn = require('./isLoggedIn.controller');
 module.exports = (router) => {
   router.get('/', testRoute);
   router.get('/auth/facebook', passport.authenticate('facebook'));
-  router.get('/auth/facebook/callback', isLoggedIn, passport.authenticate('facebook', { failureRedirect: '/api/v1' }), (req, res) => {
-    res.redirect('/api/v1');
+  router.get('/auth/facebook/callback', isLoggedIn, passport.authenticate('facebook', { failureRedirect: 'https://www.google.com' }), (req, res) => {
+    res.json({
+      success: true,
+      message: 'You have logged in successfully',
+    });
   });
   router.get('/logout', (req, res, next) => {
     req.logout();
