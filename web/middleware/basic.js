@@ -43,23 +43,13 @@ function basicMiddlewares(app) {
   // app.use(morgan('dev'));
   app.use(morgan(':method :status :res[content-length] - :response-time ms', { stream: logger.stream }));
   // CORS enabled
-  const corsOptionsDelegate = function (req, callback) {
-    const corsOptions = {
-      origin: '*',
-      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-      preflightContinue: true,
-      optionsSuccessStatus: 204,
-    };
-    callback(null, corsOptions) // callback expects two parameters: error and options
-  }
+  app.use(cors());
 
-  app.use(cors(corsOptionsDelegate));
-
-  app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-  });
+  // app.use(function (req, res, next) {
+  //   res.header("Access-Control-Allow-Origin", "*");
+  //   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  //   next();
+  // });
 
   // for detecting sql injections
   // app.use(sqlinjection);
