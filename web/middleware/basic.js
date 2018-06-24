@@ -47,7 +47,7 @@ function basicMiddlewares(app) {
     const corsOptions = {
       origin: '*',
       methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-      preflightContinue: false,
+      preflightContinue: true,
       optionsSuccessStatus: 204,
     };
     callback(null, corsOptions) // callback expects two parameters: error and options
