@@ -1,6 +1,6 @@
 const assert = require('assert');
 
-let Schema = schema;
+let Schema = null;
 
 function init() {
   const userSchema = new Schema({
