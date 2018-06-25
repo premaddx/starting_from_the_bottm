@@ -7,6 +7,7 @@ const { userDAO } = rootRequire('dao');
 passport.serializeUser((obj, done) => {
   // console.log(user);
   // done(null, user._id);
+  logger.info(`obj is ${JSON.stringify(obj)}`);
   done(null, obj);
 });
 
@@ -15,6 +16,7 @@ passport.deserializeUser((obj, done) => {
   // user.findById(id, function(err, user) {
   // 	done(err, user);
   // });
+  logger.info(`obj is ${JSON.stringify(obj)}`);
   done(null, obj);
 });
 
