@@ -3,6 +3,7 @@
  * Basic structure / pattern for any handler (this must be followed for code uniformity)
  */
 
+
 async function logic() {
   // return the data after implementation
   return { message: 'Please Login to continue' };
