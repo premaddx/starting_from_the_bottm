@@ -26,6 +26,10 @@ module.exports = (router) => {
     res.clearCookie('TestAppSession', {
       path: '/',
     });
+    res.json({
+      success: true,
+      message: 'You have logged out successfully',
+    });
     // req.session.destroy(() => {
     //   // handle to clear session as much as possible
     //   req.session = null;
